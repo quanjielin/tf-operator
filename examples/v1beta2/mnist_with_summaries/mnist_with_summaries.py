@@ -23,6 +23,7 @@ from __future__ import division
 from __future__ import print_function
 
 import argparse
+import logging
 import os
 import sys
 
@@ -177,9 +178,21 @@ def train():
 
 
 def main(_):
-  if tf.gfile.Exists(FLAGS.log_dir):
-    tf.gfile.DeleteRecursively(FLAGS.log_dir)
-  tf.gfile.MakeDirs(FLAGS.log_dir)
+  logging.info("log hello")
+  print("print: hello")
+
+  if tf.gfile.Exists(FLAGS.data_dir):
+    logging.info("data_dir exist")
+    print("print: data_dir exist")
+  else:
+    logging.info("data_dir doesn't exist")
+    print("print: data_dir not exist")
+
+  
+  #if tf.gfile.Exists(FLAGS.log_dir):
+  #  logging.info("log_dir exist")
+  #  tf.gfile.DeleteRecursively(FLAGS.log_dir)
+  #tf.gfile.MakeDirs(FLAGS.log_dir)
   train()
 
 

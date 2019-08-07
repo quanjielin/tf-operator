@@ -24,6 +24,7 @@ import (
 	"os"
 	"strings"
 
+	"github.com/cloudflare/cfssl/log"
 	"github.com/golang/glog"
 	"github.com/imdario/mergo"
 
@@ -552,6 +553,7 @@ func BuildConfigFromFlags(masterUrl, kubeconfigPath string) (*restclient.Config,
 		}
 		glog.Warning("error creating inClusterConfig, falling back to default config: ", err)
 	}
+	log.Infof("************kubeconfigPath %q", kubeconfigPath)
 	return NewNonInteractiveDeferredLoadingClientConfig(
 		&ClientConfigLoadingRules{ExplicitPath: kubeconfigPath},
 		&ConfigOverrides{ClusterInfo: clientcmdapi.Cluster{Server: masterUrl}}).ClientConfig()

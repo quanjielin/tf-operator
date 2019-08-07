@@ -9,6 +9,9 @@ The source code is borrowed from TensorFlow tutorials [here](https://github.com/
 To build this image:
 ```shell
 docker build -f Dockerfile -t kubeflow/tf-mnist-with-summaries:1.0 ./
+quanlin@quanlin:~/kubeflow/tf-operator/examples/v1beta2/mnist_with_summaries$ docker build -f Dockerfile -t quanlin/tf-mnist-with-summaries:$TAG ./
+quanlin@quanlin:~/kubeflow/tf-operator/examples/v1beta2/mnist_with_summaries$ docker push quanlin/tf-mnist-with-summaries:190806-0927
+
 ```
 
 Usage:

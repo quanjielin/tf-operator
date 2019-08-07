@@ -1,4 +1,4 @@
-apiVersion: "kubeflow.org/v1beta2"
+apiVersion: "kubeflow.org/v1beta1"
 kind: "TFJob"
 metadata:
   name: "mnist"
@@ -13,7 +13,7 @@ spec:
         spec:
           containers:
             - name: tensorflow
-              image: gcr.io/kubeflow-ci/tf-mnist-with-summaries:1.0
+              image: docker.io/quanlin/tf-mnist-with-summaries:190806-1059
               command:
                 - "python"
                 - "/var/tf_mnist/mnist_with_summaries.py"
