@@ -271,6 +271,7 @@ def main(unused_argv):
     time_begin = time.time()
     print("Training begins @ %f" % time_begin)
 
+    #saver = tf.train.Saver()
     local_step = 0
     while True:
       # Training feed
@@ -287,10 +288,16 @@ def main(unused_argv):
       if step >= FLAGS.train_steps:
         break
 
+    #https://www.tensorflow.org/guide/saved_model
+    #RuntimeError: Graph is finalized and cannot be modified.
+    #https://stackoverflow.com/questions/41798311/tensorflow-graph-is-finalized-and-cannot-be-modified
+    #save_path = saver.save(sess, "/tmp/model.ckpt")
+    #print("Model saved in path: %s" % save_path)
     time_end = time.time()
     print("Training ends @ %f" % time_end)
     training_time = time_end - time_begin
     print("Training elapsed time: %f s" % training_time)
+    
 
     # Validation feed
     val_feed = {x: mnist.validation.images, y_: mnist.validation.labels}

@@ -1,8 +1,7 @@
 apiVersion: "kubeflow.org/v1"
 kind: "TFJob"
 metadata:
-  name: "mnist"
-  namespace: kubeflow 
+  name: "mnist-save"
 spec:
   cleanPodPolicy: None 
   tfReplicaSpecs:
@@ -13,7 +12,7 @@ spec:
         spec:
           containers:
             - name: tensorflow
-              image: gcr.io/kubeflow-ci/tf-mnist-with-summaries:1.0
+              image: docker.io/quanlin/tf-mnist-with-summaries1:190830-1711
               command:
                 - "python"
                 - "/var/tf_mnist/mnist_with_summaries.py"
@@ -26,4 +25,4 @@ spec:
           volumes:
             - name: "training"
               persistentVolumeClaim:
-                claimName: "tfevent-volume"  
+                claimName: "tfevent-volume2"  

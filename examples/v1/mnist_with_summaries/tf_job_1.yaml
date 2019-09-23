@@ -1,0 +1,21 @@
+apiVersion: "kubeflow.org/v1"
+kind: "TFJob"
+metadata:
+  name: "mnist-save"
+spec:
+  cleanPodPolicy: None 
+  tfReplicaSpecs:
+    Worker:
+      replicas: 1 
+      restartPolicy: Never
+      template:
+        spec:
+          containers:
+            - name: tensorflow
+              image: docker.io/quanlin/tf-mnist-with-summaries1:190830-1711
+              command:
+                - "python"
+                - "/var/tf_mnist/mnist_with_summaries.py"
+                - "--log_dir=/train"
+                - "--learning_rate=0.01"
+                - "--batch_size=150"

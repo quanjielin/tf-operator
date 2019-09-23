@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: tfevent-volume
+  name: tfevent-volume2
   labels:
     type: local
     app: tfjob
@@ -10,6 +10,6 @@ spec:
     storage: 10Gi
   storageClassName: standard  
   accessModes:
-    - ReadWriteMany
+    - ReadOnlyMany
   hostPath:
     path: /tmp/data

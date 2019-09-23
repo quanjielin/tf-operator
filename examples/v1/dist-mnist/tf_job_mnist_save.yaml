@@ -1,0 +1,22 @@
+apiVersion: "kubeflow.org/v1"
+kind: "TFJob"
+metadata:
+  name: "dist-mnist-for-e2e-modelsave"
+spec:
+  tfReplicaSpecs:
+    PS:
+      replicas: 2
+      restartPolicy: Never
+      template:
+        spec:
+          containers:
+            - name: tensorflow
+              image: docker.io/quanlin/mnist1:190828-0945
+    Worker:
+      replicas: 4
+      restartPolicy: Never
+      template:
+        spec:
+          containers:
+            - name: tensorflow
+              image: docker.io/quanlin/mnist1:190828-0945

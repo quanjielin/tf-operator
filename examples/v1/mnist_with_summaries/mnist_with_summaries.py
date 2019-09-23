@@ -172,13 +172,20 @@ def train():
       else:  # Record a summary
         summary, _ = sess.run([merged, train_step], feed_dict=feed_dict(True))
         train_writer.add_summary(summary, i)
+ 
+  saver = tf.compat.v1.train.Saver()
+  try:
+    save_path = saver.save(sess, "model-quanlin")
+  except Exception as e:
+    print("***save %s", e)
+  print("Model saved in path: %s" % save_path)
   train_writer.close()
   test_writer.close()
 
 
 def main(_):
-  if tf.gfile.Exists(FLAGS.log_dir):
-    tf.gfile.DeleteRecursively(FLAGS.log_dir)
+  #if tf.gfile.Exists(FLAGS.log_dir):
+  #  tf.gfile.DeleteRecursively(FLAGS.log_dir)
   tf.gfile.MakeDirs(FLAGS.log_dir)
   train()
 
